@@ -24,6 +24,6 @@ s2 has probability 0<br />
 s3 has probability 3/14<br />
 s4 has probability 1/7<br />
 s5 has probability 9/14<br />
-So, putting that together, and making a common denominator, gives an answer in the form of
+So, putting that together, and making a common denominator, gives an answer in the form of<br />
 [s2.numerator, s3.numerator, s4.numerator, s5.numerator, denominator] which is
 [0, 3, 2, 9, 14].
