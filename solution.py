@@ -5,6 +5,7 @@ import fractions as f
 def standard_form(matrix):
     rows, columns = matrix.shape
     swaps = 0
+    to_swap = []
 
     for i in range(0, rows):
         if not np.any(matrix[i]):
@@ -12,11 +13,15 @@ def standard_form(matrix):
             matrix = np.delete(matrix, i+1, 0)
             swaps += 1
         else:
+            to_swap.append(i)
             matrix[i] /= matrix[i].sum()
 
-    for i in range(0, columns-swaps):
-        matrix = np.column_stack((matrix, matrix[:, 0]))
-        matrix = np.delete(matrix, 0, 1)
+    aux = matrix.copy()
+    counter = 0
+    for i in to_swap:
+        matrix = np.column_stack((matrix, aux[:, i]))
+        matrix = np.delete(matrix, i-counter, 1)
+        counter += 1
 
     for i in range(0, swaps):
         matrix[i, i] = 1
