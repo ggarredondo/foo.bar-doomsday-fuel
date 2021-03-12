@@ -25,12 +25,14 @@ def standard_form(matrix):
 
 def solution(m):
     states, swaps = standard_form(np.matrix(m, dtype=float))
-    Q = states[swaps:, swaps:]
-    I = np.diag(np.ones(len(Q)))
-    R = states[swaps:, :swaps]
-    F = (I-Q)**(-1)
+    FR = states
+    if len(states) > 1:
+        Q = states[swaps:, swaps:]
+        I = np.diag(np.ones(len(Q)))
+        R = states[swaps:, :swaps]
+        F = (I-Q)**(-1)
+        FR = F*R
 
-    FR = F*R
     result = map(f.Fraction, FR[0].A1.tolist())
     numerators = []
     denominators = []
