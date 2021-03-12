@@ -32,10 +32,14 @@ def solution(m):
 
     FR = F*R
     result = map(f.Fraction, FR[0].A1.tolist())
+    numerators = []
     denominators = []
     for i in range(0, len(result)):
         result[i] = result[i].limit_denominator(100)
         denominators.append(result[i].denominator)
     lcm = np.lcm.reduce(denominators)
+    for i in range(0, len(result)):
+        numerators.append(result[i].numerator*lcm/result[i].denominator)
+    numerators.append(lcm)
 
-    return result
+    return numerators
